@@ -4,6 +4,12 @@ The most universal way to work with .env files!
 
 Generate script based on .env and files, so it could be imported to the current process
 
+## Install
+
+```
+pip install dot-to-osscript
+```
+
 ## Usage
 Usage: `python -m dot_to_osscript [OPTIONS]`
 
