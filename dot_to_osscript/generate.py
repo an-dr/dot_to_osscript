@@ -23,32 +23,6 @@ def _concat_values(value_a, value_b, unix_var=True):
         return value_a + ";" + value_b
 
 
-def _alias_sh(_dict):
-    """
-    Parameters
-    ----------
-    _dict : dict
-    """
-    text = ""
-    for k, v in _dict.items():
-        text += "alias " + k + " = \'" + v + "'\n"
-    return text
-
-
-def _alias_ps(_dict):
-    """
-    Parameters
-    ----------
-    _dict : dict
-    """
-    text = ""
-    for k, v in _dict.items():
-        text += "Set-Alias" + \
-                " -Name \'" + k + "\'" + \
-                " -Value \'" + v + "\'\n"
-    return text
-
-
 def _env_sh(_dict, path_append=True):
     """
     Parameters
@@ -62,9 +36,9 @@ def _env_sh(_dict, path_append=True):
     text = ""
     for k, v in _dict.items():
         if path_append and k == "PATH":
-            text += k + "=\'" + "$PATH:" + v + "'\n"
+            text += k + "=\"" + "$PATH:" + v + "\"\n"
         else:
-            text += k + "=\'" + v + "'\n"
+            text += k + "=\"" + v + "\"\n"
     return text
 
 
@@ -92,27 +66,10 @@ def _env_ps(_dict, path_append=True):
     return text
 
 
-def dotenv(_dir=".", ps=False, sh=False):
-    d = _read(path.join(_dir, ".env"))
+def from_dotenv(ps=False, sh=False, env_file="./.env", path_append=True):
+    d = _read(env_file)
     if d:
         if ps:
-            _write(
-                path.join(path.dirname(_dir), ".env.ps1"),
-                _env_ps(d))
+            _write(".env.ps1", _env_ps(d, path_append=path_append))
         if sh:
-            _write(
-                path.join(path.dirname(_dir), ".env.sh"),
-                _env_sh(d))
-
-
-def dotalias(_dir=".", ps=False, sh=False):
-    d = _read(path.join(_dir, ".alias"))
-    if d:
-        if ps:
-            _write(
-                path.join(path.dirname(_dir), ".alias.ps1"),
-                _alias_ps(d))
-        if sh:
-            _write(
-                path.join(path.dirname(_dir), ".alias.sh"),
-                _alias_sh(d))
+            _write(".env.sh", _env_sh(d, path_append=path_append))

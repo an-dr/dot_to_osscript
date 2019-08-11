@@ -5,3 +5,6 @@
 /dist
 /build
 /.vscode
+/.env
+/.env.ps1
+/.env.sh
