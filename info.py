@@ -4,7 +4,7 @@ All package info is here. By defaults, opens URL with the repo
 
 info = {
     "name": "dot_to_osscript",
-    "version": "0.2.1",
+    "version": "0.3",
     "description": "Generate sh and ps1 scripts from .env files to apply for the process",
     "url": "https://github.com/an-dr/dot_to_osscript",
     "author": "Andrei Gramakov",

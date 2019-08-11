@@ -57,11 +57,15 @@ def _env_ps(_dict, path_append=True):
         if path_append and re.search('path', k, re.IGNORECASE):
             text += "Set-Variable" + \
                     " -Name \'" + "Path" + "\'" + \
-                    " -Value \'" + "$env:Path;" + v + "\'\n"
+                    " -Value \'" + "$env:Path;" + v + "\'" + \
+                    " -Scope \'Global\';" + \
+                    " Write-Output \"%s=%s\"\n" % (k, v)
         else:
             text += "Set-Variable" + \
                     " -Name \'" + k + "\'" + \
-                    " -Value \'" + v + "\'\n"
+                    " -Value \'" + v + "\'" + \
+                    " -Scope \'Global\';" + \
+                    " Write-Output \"%s=%s\"\n" % (k, v)
 
     return text
 
