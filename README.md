@@ -1,5 +1,8 @@
 # dot_to_osscript
-Generate script based on .env and .var files, so it could be imported to the current process
+
+The most universal way to work with .env files!
+
+Generate script based on .env and files, so it could be imported to the current process
 
 ## Usage
 Usage: `python -m dot_to_osscript [OPTIONS]`
