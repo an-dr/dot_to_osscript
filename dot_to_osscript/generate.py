@@ -54,7 +54,7 @@ def _env_ps(_dict, path_append=True):
     """
     text = ""
     for k, v in _dict.items():
-        if path_append and re.search('path', k, re.IGNORECASE):
+        if path_append and re.match('path$', k, re.IGNORECASE):
             text += "Set-Variable" + \
                     " -Name \'" + "Path" + "\'" + \
                     " -Value \'" + "$env:Path;" + v + "\'" + \
